@@ -86,7 +86,7 @@ const App: React.FC = () => {
 
   return (
     <div className="App w-full min-h-screen bg-black text-white">
-      <header className="bg-black text-white p-4 flex justify-between items-center md:px-20 bg-gray-900 fixed top-0 w-full z-50">
+      <header className="text-white p-4 flex justify-between items-center md:px-20 bg-gray-900 fixed top-0 w-full z-50">
         <h1 className="text-2xl md:text-3xl" style={{ fontFamily: "Jacquard" }}>
           Movies List
         </h1>
@@ -152,8 +152,17 @@ const App: React.FC = () => {
         {selectedMovie && <Modal movie={selectedMovie} onClose={closeModal} />}
       </main>
       <BackToTopButton />
-      {isFetchingNextPage && <div className="text-center">Loading more...</div>}
-      {isSearching && <div className="text-center">Searching...</div>}
+      {isFetchingNextPage && (
+        <div className="flex flex-col justify-center items-center">
+          <div className="w-12 h-12 border-4 border-gray-300 border-t-4 border-t-red-600 rounded-full animate-spin mb-4"></div>
+          <div className="text-white">Loading more...</div>
+        </div>
+      )}
+      {isSearching && (
+        <div className="flex justify-center items-center">
+          <div className="w-12 h-12 border-4 border-gray-300 border-t-4 border-t-red-600 rounded-full animate-spin"></div>
+        </div>
+      )}
     </div>
   );
 };
