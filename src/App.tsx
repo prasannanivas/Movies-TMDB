@@ -5,7 +5,6 @@ import {
   faSearch,
   faTimes,
 } from "@fortawesome/free-solid-svg-icons";
-import "./App.css";
 import { Movie, useMovies } from "./hooks/useMovies";
 import { useSearchMovies } from "./hooks/useSearchMovies";
 import MovieComponent from "./components/MovieComponent";
