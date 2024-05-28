@@ -144,7 +144,7 @@ const App: React.FC = () => {
                 : null
             }
             onClick={() => openModal(movie)}
-            className="cursor-pointer mb-16 mr-4"
+            className="cursor-pointer mb-16 mx-2"
           >
             <MovieComponent key={movie.id} movie={movie} />
           </div>

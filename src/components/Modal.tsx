@@ -29,7 +29,7 @@ const MovieModal: React.FC<MovieModalProps> = ({ movie, onClose }) => {
       <div className="absolute inset-0 bg-black opacity-50"></div>
       <div
         id="modal"
-        className="bg-white p-8 rounded-lg shadow-lg z-10 w-4/5 max-w-md"
+        className="relative bg-white p-8 rounded-lg shadow-lg z-10 w-4/5 max-w-md"
       >
         <button
           className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
@@ -50,12 +50,13 @@ const MovieModal: React.FC<MovieModalProps> = ({ movie, onClose }) => {
           </svg>
         </button>
         <div className="font-bold text-2xl mb-4 text-black">{movie.title}</div>
-        <img
-          className="w-full h-auto mb-4 rounded-lg object-cover"
-          style={{ maxHeight: "200px" }}
-          src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
-          alt={movie.title}
-        />
+        <div className="w-full h-48 mb-4">
+          <img
+            className="w-full h-full rounded-lg object-contain transform scale-100"
+            src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+            alt={movie.title}
+          />
+        </div>
         <div className="text-gray-700 mb-4">{movie.overview}</div>
         <div className="flex justify-center items-center">
           <div className="mr-4">
