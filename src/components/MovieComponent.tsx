@@ -1,4 +1,3 @@
-// src/components/MovieComponent.tsx
 import React, { useState } from "react";
 import { Movie } from "../hooks/useMovies";
 import MovieModal from "./Modal";

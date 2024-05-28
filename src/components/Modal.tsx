@@ -1,4 +1,3 @@
-// src/components/MovieModal.tsx
 import React, { useEffect } from "react";
 import { Movie } from "../hooks/useMovies";
 import StarRating from "./StarRating";

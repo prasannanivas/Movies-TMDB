@@ -1,4 +1,3 @@
-// src/App.tsx
 import React, { useRef, useCallback, useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
