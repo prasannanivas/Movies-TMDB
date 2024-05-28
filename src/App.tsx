@@ -9,6 +9,7 @@ import { Movie, useMovies } from "./hooks/useMovies";
 import { useSearchMovies } from "./hooks/useSearchMovies";
 import MovieComponent from "./components/MovieComponent";
 import Modal from "./components/Modal";
+import BackToTopButton from "./components/BackToTopButton";
 
 const App: React.FC = () => {
   const {
@@ -115,7 +116,13 @@ const App: React.FC = () => {
               }}
             />
           )}
-          {searchVisible && (
+          <div
+            className={`absolute right-0 top-0 transition-all duration-500 ease-in-out ${
+              searchVisible
+                ? "opacity-100 w-32 sm:w-48 md:w-64 lg:w-80"
+                : "opacity-0 w-0"
+            }`}
+          >
             <input
               type="text"
               id="search-input"
@@ -124,7 +131,7 @@ const App: React.FC = () => {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
-          )}
+          </div>
         </div>
       </header>
       <main className="p-4 md:p-8 lg:p-12 flex justify-around flex-wrap mt-8">
@@ -144,14 +151,7 @@ const App: React.FC = () => {
         ))}
         {selectedMovie && <Modal movie={selectedMovie} onClose={closeModal} />}
       </main>
-      {showBackToTop && (
-        <div
-          className="fixed bottom-4 right-4 bg-black p-2 rounded-full cursor-pointer bg-gray-600"
-          onClick={handleBackToTop}
-        >
-          <FontAwesomeIcon icon={faArrowUp} size="2x" className="text-white" />
-        </div>
-      )}
+      <BackToTopButton />
       {isFetchingNextPage && <div className="text-center">Loading more...</div>}
       {isSearching && <div className="text-center">Searching...</div>}
     </div>
