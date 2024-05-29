@@ -13,6 +13,7 @@ This is a web application that allows users to browse a catalog of movies. It di
 - Responsive design for optimal viewing on various devices
 - Modal component to display movie details
 - Back-to-top button for easy navigation
+- Used debouncing logic for searching movies
 
 ## Getting Started
 

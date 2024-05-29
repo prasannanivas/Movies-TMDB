@@ -23,6 +23,7 @@ const StarRating: React.FC<StarRatingProps> = ({ rating, voteCount }) => {
           />
         ))}
       </div>
+      <span className="text-xs text-gray-500">{roundedRating} / 10</span>
       <span className="text-xs text-gray-500">{voteCount} votes</span>
     </div>
   );

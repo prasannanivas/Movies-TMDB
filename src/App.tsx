@@ -1,10 +1,6 @@
 import React, { useRef, useCallback, useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faArrowUp,
-  faSearch,
-  faTimes,
-} from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { Movie, useMovies } from "./hooks/useMovies";
 import { useSearchMovies } from "./hooks/useSearchMovies";
 import MovieComponent from "./components/MovieComponent";
@@ -12,6 +8,11 @@ import Modal from "./components/Modal";
 import BackToTopButton from "./components/BackToTopButton";
 
 const App: React.FC = () => {
+  const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
+  const [searchVisible, setSearchVisible] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [debouncedQuery, setDebouncedQuery] = useState("");
+
   const {
     data: popularMovies,
     error,
@@ -21,21 +22,6 @@ const App: React.FC = () => {
     hasNextPage,
   } = useMovies();
 
-  const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
-  const [searchVisible, setSearchVisible] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [debouncedQuery, setDebouncedQuery] = useState("");
-  const [showBackToTop, setShowBackToTop] = useState(false);
-
-  const handleScroll = () => {
-    if (window.pageYOffset > 100) {
-      setShowBackToTop(true);
-    } else {
-      setShowBackToTop(false);
-    }
-  };
-  window.addEventListener("scroll", handleScroll);
-
   const {
     data: searchedMovies,
     error: searchError,
@@ -44,10 +30,6 @@ const App: React.FC = () => {
 
   const openModal = (movie: Movie) => setSelectedMovie(movie);
   const closeModal = () => setSelectedMovie(null);
-
-  const handleBackToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
 
   const observer = useRef<IntersectionObserver | null>(null);
   const lastMovieElementRef = useCallback(
@@ -67,7 +49,6 @@ const App: React.FC = () => {
 
   // Debounce the search query
   useEffect(() => {
-    console.log(window.pageYOffset);
     const handler = setTimeout(() => {
       setDebouncedQuery(searchQuery);
     }, 500); // 500ms debounce time
